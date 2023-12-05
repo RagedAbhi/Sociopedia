@@ -30,7 +30,7 @@ app.use(morgan("common"))
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors({
-    origin: ["https://sociopedia-kappa.vercel.app"],
+    origin: ["*"],
     methods: ["GET", "POST"],
     credentials: true
 }))
