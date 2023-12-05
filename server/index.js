@@ -22,6 +22,11 @@ import { users, posts } from "./data/index.js"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 dotenv.config()
+app.use(cors({
+    origin: "https://sociopedia-kappa.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true
+}))
 const app = express()
 app.use(express.json())
 app.use(helmet())
@@ -29,18 +34,13 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
 app.use(morgan("common"))
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
-app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST"],
-    credentials: true
-}))
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 app.use("/assets", express.static(path.join(__dirname, 'public/assets')))
 
 // FILE STORAGE
