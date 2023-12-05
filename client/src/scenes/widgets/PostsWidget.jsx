@@ -10,7 +10,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
     const getPosts = async () => {
         // const response = await fetch("http://localhost:3001/posts", {
-        const response = await fetch("https://sociopedia-backend-nu.vercel.app/posts", {
+        const response = await fetch("/posts", {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     }
 
     const getUserPosts = async () => {
-        const response = await fetch(`https://sociopedia-backend-nu.vercel.app/posts/${userId}/posts`, {
+        const response = await fetch(`/posts/${userId}/posts`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
         })
